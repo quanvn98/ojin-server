@@ -16,7 +16,7 @@ public class Article {
 	private String description;
 
 	public Article() {
-		super();
+
 	}
 
 	public Article(UUID id, String title, String description) {

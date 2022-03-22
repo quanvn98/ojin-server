@@ -11,7 +11,7 @@ import com.product.ojinserver.repository.ArticleRepository;
 @RestController
 public class ArticleController {
 
-	private ArticleRepository articleRepository;
+	private final ArticleRepository articleRepository;
 
 	public ArticleController(ArticleRepository _articleRepository) {
 		this.articleRepository = _articleRepository;
