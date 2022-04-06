@@ -1,36 +1,36 @@
 package com.product.ojinserver.entity;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Article {
 
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String title;
 
 	private String description;
 
 	public Article() {
-
+		super();
 	}
 
-	public Article(UUID id, String title, String description) {
+	public Article(String title, String description) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.description = description;
 	}
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

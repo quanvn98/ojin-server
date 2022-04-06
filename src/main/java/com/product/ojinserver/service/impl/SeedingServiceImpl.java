@@ -2,7 +2,6 @@ package com.product.ojinserver.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,11 +37,11 @@ public class SeedingServiceImpl implements SeedingService {
 		if (count == 0) {
 			List<Article> articles = new ArrayList<Article>();
 
-			Article article1 = new Article(UUID.randomUUID(), "Title 1", "Description 1");
+			Article article1 = new Article("Title 1", "Description 1");
 			articles.add(article1);
-			Article article2 = new Article(UUID.randomUUID(), "Title 2", "Description 2");
+			Article article2 = new Article("Title 2", "Description 2");
 			articles.add(article2);
-			Article article3 = new Article(UUID.randomUUID(), "Title 3", "Description 3");
+			Article article3 = new Article("Title 3", "Description 3");
 			articles.add(article3);
 
 			articleRepository.saveAll(articles);
@@ -55,9 +54,9 @@ public class SeedingServiceImpl implements SeedingService {
 		if (count == 0) {
 			List<Role> roles = new ArrayList<Role>();
 
-			Role role1 = new Role(UUID.randomUUID(), "ADMIN");
+			Role role1 = new Role("ROLE_ADMIN");
 			roles.add(role1);
-			Role role2 = new Role(UUID.randomUUID(), "USER");
+			Role role2 = new Role("ROLE_USER");
 			roles.add(role2);
 
 			roleRepository.saveAll(roles);
@@ -72,14 +71,14 @@ public class SeedingServiceImpl implements SeedingService {
 		final String USER_USERNAME = "1111111111";
 		final String USER_PASSWORD = "123456";
 
-		Role roleAdmin = roleRepository.findByAuthority("ADMIN").orElseGet(() -> null);
-		Role roleUser = roleRepository.findByAuthority("USER").orElseGet(() -> null);
+		Role roleAdmin = roleRepository.findByAuthority("ROLE_ADMIN").orElseGet(() -> null);
+		Role roleUser = roleRepository.findByAuthority("ROLE_USER").orElseGet(() -> null);
 
 		boolean adminExists = userRepository.existsByUsername(ADMIN_USERNAME);
 		boolean userExists = userRepository.existsByUsername(USER_USERNAME);
 
 		if (!adminExists && roleAdmin != null && roleUser != null) {
-			User admin = new User(UUID.randomUUID(), ADMIN_USERNAME, passwordEncoder.encode(ADMIN_PASSWORD),
+			User admin = new User(ADMIN_USERNAME, passwordEncoder.encode(ADMIN_PASSWORD),
 					"Demo Admin", true);
 
 			admin.addRole(roleAdmin);
@@ -89,7 +88,7 @@ public class SeedingServiceImpl implements SeedingService {
 		}
 
 		if (!userExists && roleUser != null) {
-			User user = new User(UUID.randomUUID(), USER_USERNAME, passwordEncoder.encode(USER_PASSWORD), "Demo User",
+			User user = new User(USER_USERNAME, passwordEncoder.encode(USER_PASSWORD), "Demo User",
 					true);
 
 			user.addRole(roleUser);

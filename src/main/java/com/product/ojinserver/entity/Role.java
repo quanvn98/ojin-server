@@ -2,9 +2,10 @@ package com.product.ojinserver.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -16,7 +17,8 @@ public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String authority;
 
@@ -24,20 +26,19 @@ public class Role implements GrantedAuthority {
 	private Set<User> users = new HashSet<User>();
 
 	public Role() {
-
+		super();
 	}
 
-	public Role(UUID id, String authority) {
+	public Role(String authority) {
 		super();
-		this.id = id;
 		this.authority = authority;
 	}
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

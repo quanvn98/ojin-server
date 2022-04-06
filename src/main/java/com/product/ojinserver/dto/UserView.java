@@ -1,12 +1,10 @@
 package com.product.ojinserver.dto;
 
-import java.util.UUID;
-
 import com.product.ojinserver.entity.User;
 
 public class UserView {
 
-	private UUID id;
+	private Long id;
 
 	private String username;
 
@@ -16,7 +14,7 @@ public class UserView {
 
 	}
 
-	public UserView(UUID id, String username, String fullname) {
+	public UserView(Long id, String username, String fullname) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -29,11 +27,11 @@ public class UserView {
 		this.fullname = user.getFullname();
 	}
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

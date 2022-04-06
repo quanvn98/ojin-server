@@ -2,10 +2,11 @@ package com.product.ojinserver.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +20,8 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String username;
 
@@ -34,23 +36,22 @@ public class User implements UserDetails {
 	private Set<Role> authorities = new HashSet<Role>();
 
 	public User() {
-
+		super();
 	}
 
-	public User(UUID id, String username, String password, String fullname, boolean enabled) {
+	public User(String username, String password, String fullname, boolean enabled) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
 		this.enabled = enabled;
 	}
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
